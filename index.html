@@ -7,6 +7,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  /* ======== CLIENT CONFIG (drop-in) ======== */
+// Identify client from ?client=slug (first), then /client/:slug; fallback to 'truegrmnt'
+function getClientId(){
+  const qp = new URLSearchParams(location.search).get('client');
+  if (qp) return qp.toLowerCase();
+  const m = location.pathname.match(/\/client\/([^/]+)/i);
+  if (m) return m[1].toLowerCase();
+  return 'truegrmnt'; // default while you’re not using subdomains
+}
+const CLIENT_ID = getClientId();
+
+// Per-client localStorage keys
+function keyCsv(){ return `csv_url_${CLIENT_ID}` }
+function keyRef(){ return `refresh_${CLIENT_ID}` }
+
+// Load per-client JSON config from /configs/<client>.json (optional but recommended)
+async function hydrateFromConfig(){
+  try{
+    const res = await fetch(`/configs/${CLIENT_ID}.json`, { cache:'no-store' });
+    if (!res.ok) return; // no file → skip
+    const cfg = await res.json();
+    if (cfg.sheetUrl){
+      document.getElementById('csvUrl').value = cfg.sheetUrl;
+      localStorage.setItem(keyCsv(), cfg.sheetUrl); // cache for reloads
+    }
+    // (Optional) use cfg.timezone / cfg.currency if you want
+  }catch(e){ /* ignore; fallback to localStorage */ }
+}
+
+// One-time override via ?sheet= (handy for you)
+function hydrateFromQuery(){
+  const sheet = new URLSearchParams(location.search).get('sheet');
+  if (sheet){
+    document.getElementById('csvUrl').value = sheet;
+    localStorage.setItem(keyCsv(), sheet);
+  }
+}
+/* ======== END CLIENT CONFIG ======== */
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
@@ -383,13 +421,15 @@ function showOk(m){ const el=document.getElementById('ok'); el.textContent=m; el
 function showErr(m){ const el=document.getElementById('err'); el.textContent=m; el.style.display='block'; document.getElementById('ok').style.display='none'; }
 
 function savePrefs(){
-  localStorage.setItem('meta_csv_url', document.getElementById('csvUrl').value.trim());
-  localStorage.setItem('meta_refresh_secs', document.getElementById('refreshSecs').value);
+  localStorage.setItem(keyCsv(), document.getElementById('csvUrl').value.trim());
+  localStorage.setItem(keyRef(), document.getElementById('refreshSecs').value);
   showOk("Saved.");
 }
 function loadPrefs(){
-  const u=localStorage.getItem('meta_csv_url'); if (u) document.getElementById('csvUrl').value=u;
-  const s=localStorage.getItem('meta_refresh_secs'); if (s) document.getElementById('refreshSecs').value=s;
+  const u = localStorage.getItem(keyCsv());
+  if (u) document.getElementById('csvUrl').value = u;
+  const s = localStorage.getItem(keyRef());
+  if (s) document.getElementById('refreshSecs').value = s;
 }
 
 function addCacheBust(u){ const cb='cb='+Date.now(); return u+(u.includes('?')?'&':'?')+cb; }
@@ -765,7 +805,14 @@ document.querySelectorAll('[data-preset]').forEach(btn => {
 });
 
 // init
-(function init(){ loadPrefs(); })();
+(async function init(){
+  await hydrateFromConfig();   // try /configs/<client>.json
+  hydrateFromQuery();          // allow ?sheet= override once
+  loadPrefs();                 // then fallback to saved per-client value
+  if (document.getElementById('csvUrl').value) {
+    loadData();                // auto-load if we have a URL
+  }
+})();
 </script>
 </body>
 </html>
