@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lokus Media - True Grmnt Live Campaign Dashboard (v11)</title>
+  <title>Lokus Media - True Grmnt Live Campaign Dashboard (v12)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -60,99 +60,44 @@
     .summary-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .summary-row .title { font-weight: 700; }
     .summary-row .hint { color: var(--muted); font-size: 12px; }
-  
-/* === Minor fixes (v11 patch) === */
-/* Force white calendar icons inside native date inputs */
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) brightness(1.2);
-  opacity: 0.9;
-}
-/* Helps Firefox render native pickers for dark UI */
+
+/* === Minor fixes (v11 patch + v12) === */
+input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) brightness(1.2); opacity: 0.9; }
 input[type="date"] { color-scheme: dark; }
 
-/* Align 'Campaign' text left in all tables; keep numbers right */
 #tblPerf th:first-child, #tblPerf td:first-child,
 #tbl30 th:first-child, #tbl30 td:first-child,
-#reachTop td:first-child, #visitorsTop td:first-child, #cpcTop td:first-child {
-  text-align: left;
-}
+#reachTop td:first-child, #visitorsTop td:first-child, #cpcTop td:first-child { text-align: left; }
 
-/* Ensure KPI and metric card text aligns left consistently */
-.glass .text-xs, .glass .text-3xl, .glass .font-bold, .glass .muted {
-  text-align: left;
-}
+.glass .text-xs, .glass .text-3xl, .glass .font-bold, .glass .muted { text-align: left; }
+#kSpend, #kRev, #kRoas, #kPurch { line-height: 1.1; }
+input.input, select.input, .input { vertical-align: middle; }
 
-/* Tighten vertical alignment for Spend/Revenue/ROAS KPI rows */
-#kSpend, #kRev, #kRoas, #kPurch {
-  line-height: 1.1;
-}
-
-/* Ensure filter labels and controls align baseline nicely */
-input.input, select.input, .input {
-  vertical-align: middle;
-}
-
-/* === v11 mini-table + last30 polish === */
-/* Mini tables inside the big metric cards */
+/* Mini tables in metric cards */
 .metric-mini table { border-collapse: separate; border-spacing: 0; width: 100%; }
-.metric-mini thead th { 
-  background: transparent; color: #cde8ff; font-weight: 700; 
-  padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.10); 
-  text-align: left;
-}
-.metric-mini tbody td { 
-  padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); 
-}
+.metric-mini thead th { background: transparent; color: #cde8ff; font-weight: 700; padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.10); text-align: left; }
+.metric-mini tbody td { padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .metric-mini tbody tr:last-child td { border-bottom: none; }
 .metric-mini tbody td:last-child, .metric-mini thead th:last-child { text-align: right; }
 .metric-mini tbody td:first-child, .metric-mini thead th:first-child { text-align: left; }
 
 /* Last 30 Days table styling */
 #tbl30 { border-collapse: separate; border-spacing: 0; width: 100%; }
-#tbl30 thead th {
-  background: transparent; color:#cde8ff; font-weight:700;
-  padding: 10px 12px; border-bottom:1px solid rgba(255,255,255,0.12);
-  text-align: left;
-}
+#tbl30 thead th { background: transparent; color:#cde8ff; font-weight:700; padding: 10px 12px; border-bottom:1px solid rgba(255,255,255,0.12); text-align: left; }
 #tbl30 thead th.text-right { text-align: right; }
-#tbl30 tbody td {
-  padding: 10px 12px; border-bottom:1px solid rgba(255,255,255,0.06);
-}
+#tbl30 tbody td { padding: 10px 12px; border-bottom:1px solid rgba(255,255,255,0.06); }
 #tbl30 tbody tr:nth-child(odd) td { background: rgba(255,255,255,0.02); }
 #tbl30 tbody td.text-right { text-align: right; }
 #tbl30 tbody td:first-child { text-align: left; }
 
-/* === Brand dropdown + calendar icon fixes === */
-/* Make native select menus feel on-brand */
-.select-brand {
-  border-color: rgba(34,211,238,0.55);
-  accent-color: #22d3ee;
-}
-.select-brand:hover {
-  border-color: rgba(34,211,238,0.85);
-  box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
-}
-.select-brand:focus {
-  outline: none;
-  border-color: #22d3ee;
-  box-shadow: 0 0 0 4px rgba(34,211,238,0.25);
-}
-/* Dropdown list colors (supported in modern Chromium/WebKit) */
-.select-brand option {
-  background-color: #0a1322;
-  color: #eafaff;
-}
-.select-brand option:hover,
-.select-brand option:focus {
-  background-color: #0fcde6; /* Lokus cyan hover */
-  color: #001015;
-}
-.select-brand option:checked {
-  background-color: #22d3ee; /* selected item */
-  color: #001015;
-}
+/* Brand dropdown + calendar icon fixes */
+.select-brand { border-color: rgba(34,211,238,0.55); accent-color: #22d3ee; }
+.select-brand:hover { border-color: rgba(34,211,238,0.85); box-shadow: 0 0 0 4px rgba(34,211,238,0.12); }
+.select-brand:focus { outline: none; border-color: #22d3ee; box-shadow: 0 0 0 4px rgba(34,211,238,0.25); }
+.select-brand option { background-color: #0a1322; color: #eafaff; }
+.select-brand option:hover, .select-brand option:focus { background-color: #0fcde6; color: #001015; }
+.select-brand option:checked { background-color: #22d3ee; color: #001015; }
 
-/* Force white calendar icons and add cyan hover glow */
 input[type="date"]::-webkit-calendar-picker-indicator{
   filter: invert(1) brightness(1.8) contrast(1.1) saturate(1.2);
   opacity: 0.95;
@@ -160,8 +105,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 input[type="date"]:hover::-webkit-calendar-picker-indicator{
   filter: invert(1) brightness(2) drop-shadow(0 0 4px rgba(34,211,238,0.8));
 }
-/* Help Firefox render native pickers in dark UIs */
-input[type="date"]{ color-scheme: dark; }
   </style>
 </head>
 <body>
@@ -177,7 +120,7 @@ input[type="date"]{ color-scheme: dark; }
       <div id="err" class="err"></div>
     </div>
 
-    <!-- Filters directly below title -->
+    <!-- Filters -->
     <div class="glass p-4 mb-4">
       <div class="font-bold mb-3 flex items-center justify-between">
         <span>Filters</span>
@@ -211,8 +154,9 @@ input[type="date"]{ color-scheme: dark; }
           <input id="toDate" type="date" class="input w-full">
         </div>
       </div>
-      <div class="mt-3">
+      <div class="mt-3 flex items-center gap-2">
         <button id="applyFilters" class="btn-ghost">Apply</button>
+        <span class="muted text-xs">Tip: Campaign list refreshes automatically when new campaigns appear in the sheet.</span>
       </div>
     </div>
 
@@ -325,6 +269,7 @@ input[type="date"]{ color-scheme: dark; }
           <thead>
             <tr>
               <th>Date</th>
+              <th>Campaign</th>
               <th class="text-right">Spend</th>
               <th class="text-right">Revenue</th>
               <th class="text-right">ROAS</th>
@@ -398,11 +343,38 @@ function validateCsv(u){ const l=u.toLowerCase(); return l.includes('output=csv'
 
 function parseDateFlexible(s){
   if (s == null) return null;
-  if (!isNaN(s) && s!==""){ const n=Number(s); if (isFinite(n)){ const ms=(n-25569)*86400*1000; const d=new Date(ms); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); } }
+  // Excel serial
+  if (!isNaN(s) && s!==""){
+    const n=Number(s);
+    if (isFinite(n)){
+      const ms=(n-25569)*86400*1000;
+      const d=new Date(ms);
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+  }
   if (typeof s!=='string') s=String(s);
-  const t=s.trim(); const iso=new Date(t); if (!isNaN(iso)) return new Date(iso.getFullYear(), iso.getMonth(), iso.getDate());
-  if (t.includes('/')){ const [a,b,c]=t.split('/').map(x=>x.trim()); if (a&&b&&c){ const ddmm=new Date(+c, +b-1, +a); const mmdd=new Date(+c, +a-1, +b); if (+a>12 && !isNaN(ddmm)) return ddmm; if (+b>12 && !isNaN(mmdd)) return mmdd; if (!isNaN(ddmm)) return ddmm; if (!isNaN(mmdd)) return mmdd; } }
-  if (t.includes('.')){ const [d,m,y]=t.split('.').map(x=>x.trim()); const dt=new Date(+y, +m-1, +d); if (!isNaN(dt)) return dt; }
+  const t=s.trim();
+  // ISO
+  const iso=new Date(t);
+  if (!isNaN(iso)) return new Date(iso.getFullYear(), iso.getMonth(), iso.getDate());
+  // dd/mm/yyyy or mm/dd/yyyy
+  if (t.includes('/')){
+    const [a,b,c]=t.split('/').map(x=>x.trim());
+    if (a&&b&&c){
+      const ddmm=new Date(+c, +b-1, +a);
+      const mmdd=new Date(+c, +a-1, +b);
+      if (+a>12 && !isNaN(ddmm)) return ddmm;
+      if (+b>12 && !isNaN(mmdd)) return mmdd;
+      if (!isNaN(ddmm)) return ddmm;
+      if (!isNaN(mmdd)) return mmdd;
+    }
+  }
+  // dd.mm.yyyy
+  if (t.includes('.')){
+    const [d,m,y]=t.split('.').map(x=>x.trim());
+    const dt=new Date(+y, +m-1, +d);
+    if (!isNaN(dt)) return dt;
+  }
   return null;
 }
 function parseNumFlexible(v){
@@ -410,7 +382,11 @@ function parseNumFlexible(v){
   if (typeof v==='number' && isFinite(v)) return v;
   let s=String(v).trim();
   if (s.includes('.') && s.includes(',')){ s=s.replace(/\\./g,'').replace(',', '.'); }
-  else if (s.includes(',')){ const parts=s.split(','); if (parts.length===2 && parts[1].length<=2) s=parts[0]+'.'+parts[1]; else s=s.replace(/,/g,''); }
+  else if (s.includes(',')){
+    const parts=s.split(',');
+    if (parts.length===2 && parts[1].length<=2) s=parts[0]+'.'+parts[1];
+    else s=s.replace(/,/g,'');
+  }
   s=s.replace(/[^0-9\\.\\-]/g,'');
   const n=Number(s); return isFinite(n)? n : 0;
 }
@@ -448,6 +424,28 @@ function parseCsv(text){
   }).filter(Boolean).sort((a,b)=> a.date - b.date);
 }
 
+// === Campaign dropdown (auto-refreshes to include new campaigns) ===
+function fillCampaignFilter(rows){
+  const sel=document.getElementById('campaignFilter');
+  const current = sel.value || '__ALL__';
+  sel.innerHTML = ''; // rebuild every time
+  const oAll = document.createElement('option');
+  oAll.value='__ALL__'; oAll.textContent='All campaigns';
+  sel.appendChild(oAll);
+  const seen=new Set();
+  rows.forEach(r=>{
+    const name = r.campaign_name || 'Unknown';
+    if (!seen.has(name)){
+      seen.add(name);
+      const o=document.createElement('option');
+      o.value=name; o.textContent=name;
+      sel.appendChild(o);
+    }
+  });
+  // restore selection if still present
+  if ([...sel.options].some(o=>o.value===current)) sel.value=current;
+}
+
 // Filtering & presets
 function setPreset(preset){
   const now = new Date();
@@ -468,19 +466,18 @@ function setPreset(preset){
   }
 }
 function applyFilters(){
-  const from = document.getElementById('fromDate').value ? parseDateFlexible(document.getElementById('fromDate').value) : null;
-  const to   = document.getElementById('toDate').value ? parseDateFlexible(document.getElementById('toDate').value) : null;
+  // refresh campaign list first (so new campaigns appear)
+  fillCampaignFilter(RAW);
+
+  let from = document.getElementById('fromDate').value ? parseDateFlexible(document.getElementById('fromDate').value) : null;
+  let to   = document.getElementById('toDate').value ? parseDateFlexible(document.getElementById('toDate').value) : null;
+
+  // if user swapped by mistake, auto-correct
+  if (from && to && from>to){ const t=from; from=to; to=t; document.getElementById('fromDate').value=ymd(from); document.getElementById('toDate').value=ymd(to); }
+
   const camp = document.getElementById('campaignFilter').value;
   FILT = RAW.filter(r => (!from || r.date>=from) && (!to || r.date<=to) && (camp==='__ALL__' || r.campaign_name===camp));
-  fillCampaignFilter(RAW);
   updateAll();
-}
-function fillCampaignFilter(rows){
-  const sel=document.getElementById('campaignFilter');
-  if (sel.dataset.filled === '1') return;
-  const seen=new Set();
-  rows.forEach(r=>{ if (r.campaign_name && !seen.has(r.campaign_name)){ seen.add(r.campaign_name); const o=document.createElement('option'); o.value=r.campaign_name; o.textContent=r.campaign_name; sel.appendChild(o);} });
-  sel.dataset.filled='1';
 }
 
 // Aggregations
@@ -489,12 +486,7 @@ function groupDaily(rows){
   rows.forEach(r=>{
     const k=ymd(r.date);
     const cur=map.get(k)||{spend:0, rev:0, purch:0, clicks:0, impr:0, reach:0};
-    cur.spend += (+r.spend || 0);
-    cur.rev   += (+r.purchase_value || 0);
-    cur.purch += (+r.purchases || 0);
-    cur.clicks+= (+r.clicks || 0);
-    cur.impr  += (+r.impressions || 0);
-    cur.reach += (+r.reach || 0);
+    cur.spend+=r.spend||0; cur.rev+=r.purchase_value||0; cur.purch+=r.purchases||0; cur.clicks+=r.clicks||0; cur.impr+=r.impressions||0; cur.reach+=r.reach||0;
     map.set(k,cur);
   });
   const labels=Array.from(map.keys()).sort();
@@ -523,8 +515,8 @@ function getPeriodDeltas(metric){
   const camp = document.getElementById('campaignFilter').value;
   const inCamp = (r)=> (camp==='__ALL__' || r.campaign_name===camp);
 
-  const curTotal  = RAW.filter(r => inCamp(r) && r.date>=start && r.date<=end).reduce((s,r)=> s + (+r[metric] || 0), 0);
-  const prevTotal = RAW.filter(r => inCamp(r) && r.date>=prevStart && r.date<=prevEnd).reduce((s,r)=> s + (+r[metric] || 0), 0);
+  const curTotal = RAW.filter(r => inCamp(r) && r.date>=start && r.date<=end).reduce((s,r)=> s + (r[metric]||0), 0);
+  const prevTotal = RAW.filter(r => inCamp(r) && r.date>=prevStart && r.date<=prevEnd).reduce((s,r)=> s + (r[metric]||0), 0);
 
   if (!prevTotal) return {delta:0, sign:0, prevTotal, curTotal};
   const change = (curTotal - prevTotal) / prevTotal;
@@ -533,9 +525,9 @@ function getPeriodDeltas(metric){
 
 // Big blocks
 function updateBigBlocks(){
-  const totalReach = FILT.reduce((s,r)=> s + (+r.reach || 0), 0);
-  const totalClicks = FILT.reduce((s,r)=> s + (+r.clicks || 0), 0);
-  const totalSpend = FILT.reduce((s,r)=> s + (+r.spend || 0), 0);
+  const totalReach = FILT.reduce((s,r)=>s+(r.reach||0),0);
+  const totalClicks = FILT.reduce((s,r)=>s+(r.clicks||0),0);
+  const totalSpend = FILT.reduce((s,r)=>s+(r.spend||0),0);
   const cpc = totalClicks ? totalSpend/totalClicks : 0;
   document.getElementById('reachBig').textContent = num(totalReach);
   document.getElementById('visitorsBig').textContent = num(totalClicks);
@@ -543,7 +535,7 @@ function updateBigBlocks(){
 
   function topBy(metric, max=10){
     const map=new Map();
-    FILT.forEach(r=>{ const k=r.campaign_name||'Unknown'; map.set(k, (map.get(k)||0) + (+r[metric] || 0)); });
+    FILT.forEach(r=>{ const k=r.campaign_name||'Unknown'; map.set(k, (map.get(k)||0) + (r[metric]||0)); });
     return Array.from(map.entries()).sort((a,b)=>b[1]-a[1]).slice(0,max);
   }
   const reachTop = topBy('reach');
@@ -552,8 +544,7 @@ function updateBigBlocks(){
   FILT.forEach(r=>{
     const k=r.campaign_name||'Unknown';
     const cur=cpcMap.get(k)||{spend:0, clicks:0};
-    cur.spend  += (+r.spend || 0);
-    cur.clicks += (+r.clicks || 0);
+    cur.spend += r.spend||0; cur.clicks += r.clicks||0;
     cpcMap.set(k,cur);
   });
   const cpcTop = Array.from(cpcMap.entries()).map(([k,v])=>({name:k, cpc: v.clicks? v.spend/v.clicks : 0})).filter(x=>x.cpc>0).sort((a,b)=>a.cpc-b.cpc).slice(0,10);
@@ -577,9 +568,9 @@ function updateBigBlocks(){
 // KPIs + Charts
 function updateKPIs(){
   const g=groupDaily(FILT);
-  const spendTotal=g.spend.reduce((a,b)=> a + (+b || 0), 0);
-  const revTotal  =g.rev.reduce((a,b)=> a + (+b || 0), 0);
-  const purchTotal=g.purch.reduce((a,b)=> a + (+b || 0), 0);
+  const spendTotal=g.spend.reduce((a,b)=>a+b,0);
+  const revTotal=g.rev.reduce((a,b)=>a+b,0);
+  const purchTotal=g.purch.reduce((a,b)=>a+b,0);
   const roasAvg = spendTotal ? (revTotal/spendTotal) : 0;
 
   document.getElementById('kSpend').textContent = money(spendTotal);
@@ -640,7 +631,7 @@ function updateCharts(){
   const byCamp=new Map();
   FILT.forEach(r=>{
     const k=r.campaign_name||'Unknown';
-    byCamp.set(k, (byCamp.get(k)||0) + (+r.spend || 0));
+    byCamp.set(k, (byCamp.get(k)||0) + (r.spend||0));
   });
   const names=Array.from(byCamp.keys());
   const vals=Array.from(byCamp.values());
@@ -656,22 +647,16 @@ function updateCharts(){
 
 // Tables
 function updatePerfTable(){
-  // Aggregate by campaign (filtered window)
   const agg=new Map();
   FILT.forEach(r=>{
     const k=r.campaign_name||'Unknown';
     const o=agg.get(k)||{spend:0, rev:0, purch:0, clicks:0, impr:0, reach:0};
-    o.spend  += (+r.spend || 0);
-    o.rev    += (+r.purchase_value || 0);
-    o.purch  += (+r.purchases || 0);
-    o.clicks += (+r.clicks || 0);
-    o.impr   += (+r.impressions || 0);
-    o.reach  += (+r.reach || 0);
+    o.spend+=r.spend||0; o.rev+=r.purchase_value||0; o.purch+=r.purchases||0; o.clicks+=r.clicks||0; o.impr+=r.impressions||0; o.reach+=r.reach||0;
     agg.set(k,o);
   });
   const rows = Array.from(agg.entries())
     .map(([name,v])=>({ name, ...v, roas: v.spend? v.rev/v.spend:0, cpc: v.clicks? v.spend/v.clicks:0, ctr: v.impr? v.clicks/v.impr:0 }))
-    .filter(r=> r.spend>=50) // threshold
+    .filter(r=> r.spend>=50)
     .sort((a,b)=> b.roas - a.roas)
     .slice(0,20);
 
@@ -698,16 +683,16 @@ function updatePerfTable(){
 function updateLast30(){
   const now=new Date();
   const start=new Date(now); start.setDate(start.getDate()-29);
-  // Aggregate on RAW to show global daily trend
+  const selectedCamp = document.getElementById('campaignFilter').value;
+  const campLabel = selectedCamp==='__ALL__' ? 'All campaigns' : selectedCamp;
+
+  // Aggregate on RAW for last 30, but respect campaign selection
   const map=new Map();
   RAW.forEach(r=>{
-    if (r.date>=start && r.date<=now){
+    if ((selectedCamp==='__ALL__' || r.campaign_name===selectedCamp) && r.date>=start && r.date<=now){
       const k=ymd(r.date);
       const cur=map.get(k)||{spend:0, rev:0, clicks:0, reach:0};
-      cur.spend += (+r.spend || 0);
-      cur.rev   += (+r.purchase_value || 0);
-      cur.clicks+= (+r.clicks || 0);
-      cur.reach += (+r.reach || 0);
+      cur.spend+=r.spend||0; cur.rev+=r.purchase_value||0; cur.clicks+=r.clicks||0; cur.reach+=r.reach||0;
       map.set(k,cur);
     }
   });
@@ -721,6 +706,7 @@ function updateLast30(){
     const tr=document.createElement('tr');
     tr.innerHTML = `
       <td>${d}</td>
+      <td>${escapeHtml(campLabel)}</td>
       <td class="text-right">${money(v.spend)}</td>
       <td class="text-right">${money(v.rev)}</td>
       <td class="text-right ${roasClass}">${v.spend? fmt2.format(roas):'—'}</td>
@@ -775,12 +761,137 @@ document.getElementById('loadData').addEventListener('click', loadData);
 document.getElementById('startAuto').addEventListener('click', startAuto);
 document.getElementById('stopAuto').addEventListener('click', stopAuto);
 document.getElementById('applyFilters').addEventListener('click', applyFilters);
+document.getElementById('campaignFilter').addEventListener('change', applyFilters);
 document.querySelectorAll('[data-preset]').forEach(btn => {
   btn.addEventListener('click', (e)=> setPreset(e.currentTarget.getAttribute('data-preset')));
 });
 
 // init
 (function init(){ loadPrefs(); })();
+</script>
+
+<!-- ===== Lokus Portal Add-on (v12.3): Multi-client loader with safe namespacing ===== -->
+<script>
+/*
+USAGE:
+- Host this file and open with ?c=slug (or ?client=slug), e.g. https://host/dashboard.html?c=truegrmnt
+- It will fetch your registry CSV and auto-fill/start the dashboard with that client's sheet URL.
+- No function name collisions with the main dashboard (registry helpers are namespaced).
+*/
+(function PortalAddon(){
+  const REGISTRY_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQL2f_sXBEqlYpC6_R40ot6nneA_5t_izBDTO-fDUVE49lVZZlIJ-UxTlDsQRIDQxl_CawgM3utvres/pub?gid=902655156&single=true&output=csv"; // <-- replace with your registry
+  const REQUIRE_TOKEN = false; // set true if you intend to use token protection
+
+  // ----- tiny helpers (scoped) -----
+  const qs = (sel)=> document.querySelector(sel);
+  function waitFor(sel, tries=40, gap=250){
+    return new Promise((resolve, reject)=>{
+      (function poll(remaining){
+        const el = qs(sel);
+        if (el) return resolve(el);
+        if (remaining <= 0) return reject(new Error("Element not found: "+sel));
+        setTimeout(()=>poll(remaining-1), gap);
+      })(tries);
+    });
+  }
+  function getSlug(){
+    const u = new URL(location.href);
+    const qp = u.searchParams.get("c") || u.searchParams.get("client");
+    if (qp) return qp.trim().toLowerCase();
+    const parts = u.pathname.split("/").filter(Boolean);
+    const last = parts.length ? parts[parts.length-1] : "";
+    if (last && !/\\.[a-z0-9]+$/i.test(last)) return last.toLowerCase();
+    return "";
+  }
+  async function fetchRegistryCsv(url){
+    const final = "https://corsproxy.io/?" + encodeURIComponent(url);
+    const res = await fetch(final, { mode:"cors" });
+    if (!res.ok) throw new Error("Registry load failed: HTTP "+res.status);
+    return await res.text();
+  }
+  function parseRegistryCsv(text){
+    if (typeof Papa !== "undefined"){
+      const out = Papa.parse(text, { header:true, dynamicTyping:false, skipEmptyLines:true });
+      return Array.isArray(out.data) ? out.data : [];
+    }
+    const lines = text.split(/\\r?\\n/).filter(Boolean);
+    const head = lines.shift().split(",").map(s=>s.trim());
+    return lines.map(line=>{
+      const o={}; const cells=line.split(",");
+      head.forEach((h,i)=> o[h.trim()] = (cells[i]||"").trim());
+      return o;
+    });
+  }
+  function banner(msg, ok=true){
+    let el = document.getElementById("portal-debug");
+    if (!el){
+      el = document.createElement("div");
+      el.id="portal-debug";
+      el.style.cssText = "position:fixed;bottom:10px;left:10px;z-index:99999;font:12px/1.4 system-ui;"+
+        "background:"+ (ok?"rgba(16,185,129,0.12)":"rgba(239,68,68,0.12)") +";border:1px solid "+(ok?"rgba(16,185,129,0.5)":"rgba(239,68,68,0.5)")+
+        ";padding:8px 10px;border-radius:8px;color:#eafaff;max-width:60vw";
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    console.log("[Portal]", msg);
+  }
+
+  // ----- main -----
+  (async function initPortal(){
+    try{
+      const slug = getSlug();
+      if (!slug){
+        // No slug = normal manual mode
+        return;
+      }
+      banner("Loading registry…");
+
+      const csvText = await fetchRegistryCsv(REGISTRY_CSV_URL);
+      const rows = parseRegistryCsv(csvText).map(r=>{
+        const o={}; Object.keys(r).forEach(k=> o[String(k).toLowerCase().trim()] = r[k]);
+        return o;
+      });
+
+      const row = rows.find(r => String(r.slug||"").trim().toLowerCase() === slug);
+      if (!row){ throw new Error("Client not found in registry: "+slug); }
+
+      const token = String(row.token||"").trim();
+      if (REQUIRE_TOKEN && token){
+        const t = new URL(location.href).searchParams.get("t") || "";
+        if (t !== token) throw new Error("Access token missing/invalid for "+slug);
+      }
+
+      const sheetUrl = String(row.csv_url||"").trim();
+      if (!sheetUrl) throw new Error("csv_url missing for "+slug);
+
+      const secs = Number(row.refresh_secs||60);
+      localStorage.setItem("meta_csv_url", sheetUrl);
+      localStorage.setItem("meta_refresh_secs", String(isFinite(secs)&&secs>0?secs:60));
+
+      banner(`Client: ${slug} → csv_url set. Waiting for UI…`);
+
+      await waitFor("#csvUrl");
+      const urlEl   = qs("#csvUrl");
+      const loadBtn = qs("#loadData");
+      const autoBtn = qs("#startAuto");
+      if (!urlEl || !loadBtn){ throw new Error("Dashboard controls not found (#csvUrl/#loadData). Check IDs or move portal script to just before </body>."); }
+
+      urlEl.value = sheetUrl;
+      loadBtn.click();
+      setTimeout(()=>{ if (autoBtn && secs>0) autoBtn.click(); }, 600);
+
+      const det = qs("details.settings"); if (det) det.open = false;
+      const titleEl = document.querySelector(".text-xl.font-extrabold");
+      if (titleEl && row.name) titleEl.textContent = "Lokus Media — " + row.name + " Live Campaign Dashboard";
+
+      banner("Auto-load triggered ✅");
+    }catch(err){
+      const ebox = document.getElementById("err");
+      if (ebox){ ebox.textContent = "Portal error: " + (err.message||err); ebox.style.display="block"; }
+      banner("Portal error: " + (err.message||err), false);
+    }
+  })();
+})();
 </script>
 </body>
 </html>
